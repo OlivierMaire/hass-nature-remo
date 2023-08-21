@@ -27,6 +27,14 @@ Tested on Home Assistant Core 2021.3.3 on Docker
 
 ## Installation
 
+### Install via HACS Custom repositories
+
+https://hacs.xyz/docs/faq/custom_repositories
+
+Enter the following information in the dialog and click ADD button.
+
+Repository: https://github.com/OlivierMaire/hass-nature-remo
+
 ### Manual Install
 
 1. Download this repository
