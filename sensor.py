@@ -12,6 +12,7 @@ from homeassistant.const import (
     DEVICE_CLASS_HUMIDITY,
     LIGHT_LUX,
     DEVICE_CLASS_ILLUMINANCE,
+    DEVICE_CLASS_TIMESTAMP
 )
 from . import DOMAIN, NatureRemoBase, NatureRemoDeviceBase
 
@@ -39,6 +40,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
                 entities.append(NatureRemoHumiditySensor(coordinator, device))
             elif sensor == "il":
                 entities.append(NatureRemoIlluminanceSensor(coordinator, device))
+            elif sensor == "mo":
+                entities.append(NatureRemoMotionSensor(coordinator, device))
     async_add_entities(entities)
 
 
@@ -170,3 +173,33 @@ class NatureRemoIlluminanceSensor(NatureRemoDeviceBase):
     def device_class(self):
         """Return the device class."""
         return DEVICE_CLASS_ILLUMINANCE 
+
+        
+class NatureRemoMotionSensor(NatureRemoDeviceBase):
+    """Implementation of a Nature Remo sensor."""
+
+    def __init__(self, coordinator, appliance):
+        super().__init__(coordinator, appliance)
+        self._name = self._name.strip() + " Motion"
+
+    @property
+    def unique_id(self):
+        """Return a unique ID."""
+        return self._device["id"] + "-mo"
+
+    @property
+    def unit_of_measurement(self):
+        """Return the unit of measurement of this entity, if any."""
+        return LIGHT_LUX
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+        device = self._coordinator.data["devices"][self._device["id"]]
+        return device["newest_events"]["mo"]["created_at"]
+
+    @property
+    def device_class(self):
+        """Return the device class."""
+        return DEVICE_CLASS_TIMESTAMP 
+
