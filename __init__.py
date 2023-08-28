@@ -39,31 +39,31 @@ DEFAULT_UPDATE_INTERVAL = timedelta(seconds=60)
 CONFIG_SCHEMA = cv.removed(DOMAIN, raise_if_present=False)
 
 
-async def async_setup(hass: HomeAssistant, config: ConfigEntry) -> bool:
-    """Set up Nature Remo component."""
-    _LOGGER.debug("Setting up Nature Remo component.")
-    access_token = config[DOMAIN][CONF_ACCESS_TOKEN]
-    session = async_get_clientsession(hass)
-    api = NatureRemoAPI(access_token, session)
-    coordinator = hass.data[DOMAIN] = DataUpdateCoordinator(
-        hass,
-        _LOGGER,
-        name="Nature Remo update",
-        update_method=api.get,
-        update_interval=DEFAULT_UPDATE_INTERVAL,
-    )
-    await coordinator.async_refresh()
-    hass.data[DOMAIN] = {
-        "api": api,
-        "coordinator": coordinator,
-        "config": config[DOMAIN],
-    }
+# async def async_setup(hass: HomeAssistant, config: ConfigEntry) -> bool:
+#     """Set up Nature Remo component."""
+#     _LOGGER.debug("Setting up Nature Remo component.")
+#     access_token = config[DOMAIN][CONF_ACCESS_TOKEN]
+#     session = async_get_clientsession(hass)
+#     api = NatureRemoAPI(access_token, session)
+#     coordinator = hass.data[DOMAIN] = DataUpdateCoordinator(
+#         hass,
+#         _LOGGER,
+#         name="Nature Remo update",
+#         update_method=api.get,
+#         update_interval=DEFAULT_UPDATE_INTERVAL,
+#     )
+#     await coordinator.async_refresh()
+#     hass.data[DOMAIN] = {
+#         "api": api,
+#         "coordinator": coordinator,
+#         "config": config[DOMAIN],
+#     }
 
-    await discovery.async_load_platform(hass, "sensor", DOMAIN, {}, config)
-    await discovery.async_load_platform(hass, "climate", DOMAIN, {}, config)
-    await discovery.async_load_platform(hass, "light", DOMAIN, {}, config)
-    await discovery.async_load_platform(hass, "switch", DOMAIN, {}, config)
-    return True
+#     await discovery.async_load_platform(hass, "sensor", DOMAIN, {}, config)
+#     await discovery.async_load_platform(hass, "climate", DOMAIN, {}, config)
+#     await discovery.async_load_platform(hass, "light", DOMAIN, {}, config)
+#     await discovery.async_load_platform(hass, "switch", DOMAIN, {}, config)
+#     return True
 
 
 class NatureRemoAPI:
