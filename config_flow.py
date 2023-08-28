@@ -132,6 +132,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input=None):
         """User initiated config flow."""
+
+        _LOGGER.debug("User initiated config flow.")
+
         if user_input is None:
             return self.async_show_form(step_id="user", data_schema=self.schema)
         if user_input.get(CONF_ACCESS_TOKEN):
