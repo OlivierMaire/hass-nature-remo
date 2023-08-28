@@ -1,19 +1,19 @@
 """Config flow for the Nature Remo platform."""
 import asyncio
 import logging
+
 import voluptuous as vol
-
 from aiohttp import ClientError, web_exceptions
-
 from homeassistant import config_entries
 from homeassistant.const import CONF_ACCESS_TOKEN
-from homeassistant.components import zeroconf
+from homeassistant.data_entry_flow import FlowResult
+# from homeassistant.components import zeroconf
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.data_entry_flow import FlowResult
 
-from .const import DOMAIN, KEY_MAC, CONF_COOL_TEMP, CONF_HEAT_TEMP, DEFAULT_HEAT_TEMP, DEFAULT_COOL_TEMP, TIMEOUT
 from . import NatureRemoAPI
+from .const import (CONF_COOL_TEMP, CONF_HEAT_TEMP, DEFAULT_COOL_TEMP,
+                    DEFAULT_HEAT_TEMP, DOMAIN, KEY_MAC, TIMEOUT)
 
 _LOGGER = logging.getLogger(__name__)
 
