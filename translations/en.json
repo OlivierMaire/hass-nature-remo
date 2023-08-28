@@ -1,0 +1,20 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Confirgure your Nature Remo",
+                "description": "Enter the Access Token of your Nature Remo account.",
+                "data": {
+                    "access_token": "api key label"
+                }
+            }
+        },
+        "error": {
+            "invalid_api_key": "This message will be displayed if `invalid_api_key` is returned as a flow error.",
+            "unknown": "[%key:common::config_flow::error::unknown%]",
+            "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+            "api_password": "Invalid authentication, use either API Key or Password.",
+            "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+        }
+    }
+}
