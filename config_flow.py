@@ -56,13 +56,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self.async_create_entry(
             title=DOMAIN,
-            data={
-                DOMAIN:
-                {
+            data={         
                 # CONF_HOST: host,
                 KEY_MAC: mac,
                 CONF_ACCESS_TOKEN: key,
-            },
             }
         )
 
