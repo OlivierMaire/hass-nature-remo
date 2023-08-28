@@ -32,8 +32,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Return current schema."""
         return vol.Schema(
             {
-        DOMAIN: vol.Schema(
-            {
+        # DOMAIN: vol.Schema(
+            # {
                 # vol.Required(CONF_HOST, default=self.host): str,
                 vol.Required(CONF_ACCESS_TOKEN): cv.string,
                 vol.Optional(CONF_COOL_TEMP, default=DEFAULT_COOL_TEMP): vol.Coerce(
@@ -41,9 +41,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 ),
                 vol.Optional(CONF_HEAT_TEMP, default=DEFAULT_HEAT_TEMP): vol.Coerce(
                     int
-                ),
-            }
-        )
+                )
+            # }
+        # )
     },
     extra=vol.ALLOW_EXTRA,
         )
