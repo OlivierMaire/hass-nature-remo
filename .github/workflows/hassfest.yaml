@@ -7,11 +7,18 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  validate:
-    runs-on: "ubuntu-latest"
+  hacs-validate:
+    name: HACS Validation
+    runs-on: 'ubuntu-latest'
     steps:
-      - uses: "actions/checkout@v2"
-      - name: "hassfest" 
-        uses: home-assistant/actions/hassfest@master
+      - uses: 'actions/checkout@v2'
+      - name: HACS validation
+        uses: 'hacs/action@main'
         with:
-          path: nature_remo
+          category: 'integration'
+  hassfest-validate:
+    name: hassfest Validation
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v2'
+      - uses: home-assistant/actions/hassfest@master
