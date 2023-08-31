@@ -1,9 +1,10 @@
 """Support for Nature Remo AC."""
-import logging
 import asyncio
+import logging
 
-from homeassistant.core import callback
 from homeassistant.components.switch import SwitchEntity
+from homeassistant.core import callback
+
 # from homeassistant.components.switch.const import (
 #     SERVICE_TOGGLE,
 #     SERVICE_TURN_OFF,

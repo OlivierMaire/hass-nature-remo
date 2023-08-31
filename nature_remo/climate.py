@@ -1,23 +1,22 @@
 """Support for Nature Remo AC."""
 import logging
 
-from homeassistant.core import callback
 from homeassistant.components.climate import ClimateEntity
-from homeassistant.components.climate.const import (
-    DEFAULT_MAX_TEMP,
-    DEFAULT_MIN_TEMP,
-    HVAC_MODE_AUTO,
-    HVAC_MODE_COOL,
-    HVAC_MODE_DRY,
-    HVAC_MODE_FAN_ONLY,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
-)
+from homeassistant.components.climate.const import (DEFAULT_MAX_TEMP,
+                                                    DEFAULT_MIN_TEMP,
+                                                    HVAC_MODE_AUTO,
+                                                    HVAC_MODE_COOL,
+                                                    HVAC_MODE_DRY,
+                                                    HVAC_MODE_FAN_ONLY,
+                                                    HVAC_MODE_HEAT,
+                                                    HVAC_MODE_OFF,
+                                                    SUPPORT_FAN_MODE,
+                                                    SUPPORT_SWING_MODE,
+                                                    SUPPORT_TARGET_TEMPERATURE)
 from homeassistant.const import ATTR_TEMPERATURE, TEMP_CELSIUS
-from . import DOMAIN, CONF_COOL_TEMP, CONF_HEAT_TEMP, NatureRemoBase
+from homeassistant.core import callback
+
+from . import CONF_COOL_TEMP, CONF_HEAT_TEMP, DOMAIN, NatureRemoBase
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -217,7 +216,7 @@ class NatureRemoAC(NatureRemoBase, ClimateEntity):
         await self._coordinator.async_request_refresh()
 
     def _update(self, ac_settings, device=None):
-        # hold this to determin the ac mode while it's turned-off
+        # hold this to determine the ac mode while it's turned-off
         self._remo_mode = ac_settings["mode"]
         try:
             self._target_temperature = float(ac_settings["temp"])

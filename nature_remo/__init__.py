@@ -1,18 +1,18 @@
 """The Nature Remo integration."""
-from datetime import timedelta
 import logging
+from datetime import timedelta
+
 import voluptuous as vol
-
-
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import config_validation as cv, discovery
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-from homeassistant.helpers.entity import Entity
 from homeassistant.const import CONF_ACCESS_TOKEN
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers import config_validation as cv
+from homeassistant.helpers import discovery
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-from .const import DOMAIN, _RESOURCE
+from .const import _RESOURCE, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -129,7 +129,7 @@ class NatureRemoBase(Entity):
     @property
     def device_info(self):
         """Return the device info for the sensor."""
-        # Since device registration requires Config Entries, this dosen't work for now
+        # Since device registration requires Config Entries, this doesn't work for now
         return {
             "identifiers": {(DOMAIN, self._device["id"])},
             "name": self._device["name"],
@@ -165,7 +165,7 @@ class NatureRemoDeviceBase(Entity):
     @property
     def device_info(self):
         """Return the device info for the sensor."""
-        # Since device registration requires Config Entries, this dosen't work for now
+        # Since device registration requires Config Entries, this doesn't work for now
         return {
             "identifiers": {(DOMAIN, self._device["id"])},
             "name": self._device["name"],
@@ -186,4 +186,3 @@ class NatureRemoDeviceBase(Entity):
         Only used by the generic entity update service.
         """
         await self._coordinator.async_request_refresh()
-

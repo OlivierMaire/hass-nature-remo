@@ -1,19 +1,13 @@
 """Support for Nature Remo E energy sensor."""
 import logging
 
-from homeassistant.const import (
-    CONF_ACCESS_TOKEN,
-    ENERGY_KILO_WATT_HOUR,
-    POWER_WATT,
-    DEVICE_CLASS_POWER,
-    TEMP_CELSIUS,
-    DEVICE_CLASS_TEMPERATURE,
-    PERCENTAGE,
-    DEVICE_CLASS_HUMIDITY,
-    LIGHT_LUX,
-    DEVICE_CLASS_ILLUMINANCE,
-    DEVICE_CLASS_TIMESTAMP
-)
+from homeassistant.const import (CONF_ACCESS_TOKEN, DEVICE_CLASS_HUMIDITY,
+                                 DEVICE_CLASS_ILLUMINANCE, DEVICE_CLASS_POWER,
+                                 DEVICE_CLASS_TEMPERATURE,
+                                 DEVICE_CLASS_TIMESTAMP, ENERGY_KILO_WATT_HOUR,
+                                 LIGHT_LUX, PERCENTAGE, POWER_WATT,
+                                 TEMP_CELSIUS)
+
 from . import DOMAIN, NatureRemoBase, NatureRemoDeviceBase
 
 _LOGGER = logging.getLogger(__name__)
@@ -202,4 +196,3 @@ class NatureRemoMotionSensor(NatureRemoDeviceBase):
     def device_class(self):
         """Return the device class."""
         return DEVICE_CLASS_TIMESTAMP 
-
